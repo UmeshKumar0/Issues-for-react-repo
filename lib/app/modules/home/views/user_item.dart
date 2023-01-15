@@ -11,7 +11,7 @@ class UserItem extends StatefulWidget {
     super.key,
     required this.user,
   });
-  RepoModel user;
+  RepoModel user; // Get the user model
 
   @override
   State<UserItem> createState() => _UserItemState();
@@ -19,7 +19,7 @@ class UserItem extends StatefulWidget {
 
 class _UserItemState extends State<UserItem> {
   bool showPassword = false;
-  final dashboardController = Get.find<HomeController>();
+  final dashboardController = Get.find<HomeController>(); // Get the controller
 
   @override
   Widget build(BuildContext context) {
@@ -27,12 +27,12 @@ class _UserItemState extends State<UserItem> {
       children: [
         InkWell(
           onTap: () => FlutterWebBrowser.openWebPage(
-            url: widget.user.url ?? "",
+            url: widget.user.url ?? "", // Open the url in the browser
           ),
           onLongPress: () {
             Get.generalDialog(
                 pageBuilder: (context, animation, secondaryAnimation) =>
-                    AlertDialog(
+                    AlertDialog( // Show the alert dialog
                       actions: [
                         TextButton(
                           onPressed: () {
@@ -50,7 +50,7 @@ class _UserItemState extends State<UserItem> {
                       content: SizedBox(
                         height: 200,
                         width: 300,
-                        child: SingleChildScrollView(
+                        child: SingleChildScrollView( // Show the scroll view
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: <Widget>[
@@ -74,7 +74,7 @@ class _UserItemState extends State<UserItem> {
             margin: const EdgeInsets.only(left: 10),
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start, // Align the text to the left
               children: [
                 SizedBox(
                   width: MediaQuery.of(context).size.width,
@@ -93,7 +93,7 @@ class _UserItemState extends State<UserItem> {
                             borderRadius: BorderRadius.circular(10),
                             color: Color(int.parse(
                                 "0xff${widget.user.labels?[index].color}" ??
-                                    "000000 ")),
+                                    "000000 ")), // Get the color from the model
                           ),
                           child: Text(widget.user.labels?[index].name ?? ""),
                         ),
@@ -101,10 +101,7 @@ class _UserItemState extends State<UserItem> {
                     },
                   ),
                 ),
-                // Align(
-                //   alignment: Alignment.centerLeft,
-                //   child: Text(widget.user.labels[0].description ?? " "),
-                // ),
+               
                 const SizedBox(
                   height: 5,
                 ),
@@ -116,7 +113,7 @@ class _UserItemState extends State<UserItem> {
                   height: 5,
                 ),
                 Text(
-                    "#${widget.user.number} opened ${dashboardController.openedAt(widget.user.createdAt ?? "")} by ${widget.user.user?.login}",
+                    "#${widget.user.number} opened ${dashboardController.openedAt(widget.user.createdAt ?? "")} by ${widget.user.user?.login}", 
                     style: const TextStyle(fontSize: 15)),
               ],
             ),
@@ -127,7 +124,7 @@ class _UserItemState extends State<UserItem> {
   }
 }
 
-openBrowserTab(String url) async {
+openBrowserTab(String url) async { //Create a function to open the browser tab
   await FlutterWebBrowser.openWebPage(
     url: url,
   );

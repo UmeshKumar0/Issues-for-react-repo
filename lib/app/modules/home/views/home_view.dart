@@ -10,19 +10,26 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       appBar: AppBar(
-        title: const Text('Issues for react repo'),
+        backgroundColor: Colors.grey,
+        title: const Text(
+          'Issues for react repo',
+          style: TextStyle(color: Colors.black),
+        ),
         centerTitle: true,
       ),
       body: Center(child: Obx(() {
         return controller.isLoading.value
             ? const Center(child: CircularProgressIndicator())
             : RefreshIndicator(
+                color: Colors.grey,
+                //  RefreshIndicator is used to refresh the list
                 onRefresh: () => controller.getData(),
                 child: GetBuilder<HomeController>(
+                  // GetBuilder is used to update the list
                   builder: (controller) => ListView.builder(
-                    itemCount: controller.repoDataList.length,
+                    itemCount: controller
+                        .repoDataList.length, // Get the length of the list
                     itemBuilder: (context, index) {
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -33,6 +40,7 @@ class HomeView extends GetView<HomeController> {
                             borderRadius: BorderRadius.circular(10),
                           ),
                           child: UserItem(
+                            // Created a new widget for the list item
                             user: controller.repoDataList[index],
                           ),
                         ),
