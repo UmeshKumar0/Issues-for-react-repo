@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.umesh_staqu_assignment">
+    <uses-permission android:name="android.permission.INTERNET"/> <!-- Added to get user permission for internet access for api call -->
    <application
         android:label="umesh_staqu_assignment"
         android:name="${applicationName}"
